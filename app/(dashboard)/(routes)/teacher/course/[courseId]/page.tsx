@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import TitileForm from "./_components/titileForm";
 import DescriptionForm from "./_components/descriptionForm";
 import ImageForm from "./_components/imageForm";
+import CategoryForm from "./_components/categoryForm";
 
 const CourseIdPage = async ({
   params,
@@ -23,6 +24,12 @@ const CourseIdPage = async ({
   const course = await db.course.findUnique({
     where: {
       id: params.courseId,
+    },
+  });
+
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
     },
   });
 
@@ -62,6 +69,10 @@ const CourseIdPage = async ({
           <TitileForm initialData={course} courseId={course.id} />
           <DescriptionForm initialData={course} courseId={course.id} />
           <ImageForm initialData={course} courseId={course.id} />
+          <CategoryForm options={categories.map((category) => ({
+            label: category.name as string,
+            value: category.id,
+          }))} initialData={course} courseId={course.id} />
         </div>
       </div>
     </div>
