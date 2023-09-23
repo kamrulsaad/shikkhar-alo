@@ -15,6 +15,8 @@ import CategoryForm from "./_components/categoryForm";
 import PriceForm from "./_components/pricingForm";
 import AttachmentForm from "./_components/attachmentForm";
 import ChaptersForm from "./_components/chapterForm";
+import Banner from "@/components/banner";
+import { Actions } from "./_components/courseActions";
 
 const CourseIdPage = async ({
   params,
@@ -72,59 +74,71 @@ const CourseIdPage = async ({
 
   const completionText = `(${completedFields}/${totalFields})`;
 
+  const isCompleted = requiredFields.every(Boolean);
+
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-center">
-        <div className="flex flex-col gap-y-2">
-          <h1 className="text-2xl">Course Setup</h1>
-          <span className="text-sm text-slate-500">
-            Complete all fields {completionText}
-          </span>
-        </div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
-        <div>
-          <div className="flex items-center gap-x-2">
-            <IconBadge icon={LayoutDashboard} />
-            <h2 className="text-xl">Customize your course</h2>
+    <>
+      {!course.isPublished && (
+        <Banner label="This course is not published. It will not be visible to students." />
+      )}
+      <div className="p-6">
+        <div className="flex items-center justify-center">
+          <div className="flex flex-col gap-y-2">
+            <h1 className="text-2xl">Course Setup</h1>
+            <span className="text-sm text-slate-500">
+              Complete all fields {completionText}
+            </span>
           </div>
-          <TitileForm initialData={course} courseId={course.id} />
-          <DescriptionForm initialData={course} courseId={course.id} />
-          <ImageForm initialData={course} courseId={course.id} />
-          <CategoryForm
-            options={categories.map((category) => ({
-              label: category.name as string,
-              value: category.id,
-            }))}
-            initialData={course}
+          <Actions
+            disabled={!isCompleted}
+            isPublished={course.isPublished}
             courseId={course.id}
           />
         </div>
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge icon={ListChecks} />
-              <h2 className="text-xl">Course Content</h2>
+              <IconBadge icon={LayoutDashboard} />
+              <h2 className="text-xl">Customize your course</h2>
             </div>
-            <ChaptersForm initialData={course} courseId={course.id} />
+            <TitileForm initialData={course} courseId={course.id} />
+            <DescriptionForm initialData={course} courseId={course.id} />
+            <ImageForm initialData={course} courseId={course.id} />
+            <CategoryForm
+              options={categories.map((category) => ({
+                label: category.name as string,
+                value: category.id,
+              }))}
+              initialData={course}
+              courseId={course.id}
+            />
           </div>
-          <div>
-            <div className="flex items-center gap-x-2">
-              <IconBadge icon={CircleDollarSign} />
-              <h2 className="text-xl">Sell Your Course</h2>
+          <div className="space-y-6">
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={ListChecks} />
+                <h2 className="text-xl">Course Content</h2>
+              </div>
+              <ChaptersForm initialData={course} courseId={course.id} />
             </div>
-            <PriceForm initialData={course} courseId={course.id} />
-          </div>
-          <div>
-            <div className="flex items-center gap-x-2">
-              <IconBadge icon={File} />
-              <h2 className="text-xl">Resources & Attachments</h2>
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={CircleDollarSign} />
+                <h2 className="text-xl">Sell Your Course</h2>
+              </div>
+              <PriceForm initialData={course} courseId={course.id} />
             </div>
-            <AttachmentForm initialData={course} courseId={course.id} />
+            <div>
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={File} />
+                <h2 className="text-xl">Resources & Attachments</h2>
+              </div>
+              <AttachmentForm initialData={course} courseId={course.id} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
