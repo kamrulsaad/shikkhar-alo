@@ -82,7 +82,7 @@ const CourseIdPage = async ({
         <Banner label="This course is not published. It will not be visible to students." />
       )}
       <div className="p-6">
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
             <h1 className="text-2xl">Course Setup</h1>
             <span className="text-sm text-slate-500">
