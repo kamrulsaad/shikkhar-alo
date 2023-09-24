@@ -5,6 +5,7 @@ import Link from "next/link";
 import { IconBadge } from "@/components/iconBadge";
 import { BookOpen } from "lucide-react";
 import { formatPrice } from "@/lib/format";
+import CourseProgress from "./courseProgress";
 
 interface CourseCardProps {
   id: string;
@@ -35,26 +36,22 @@ export const CourseCard = async ({
           <div className="text-lg md:text-base font-medium group-hover:text-sky-700 transition line-clamp-2">
             {title}
           </div>
-          <p className="text-xs text-muted-foreground">
-            {category}
-          </p>
+          <p className="text-xs text-muted-foreground">{category}</p>
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
             <div className="flex items-center gap-x-1 text-slate-500">
-                <IconBadge size={"sm"} icon={BookOpen} />
-                <span>{chaptersLength} {chaptersLength === 1 ? "Chapter" : "Chapters"}</span>
+              <IconBadge size={"sm"} icon={BookOpen} />
+              <span>
+                {chaptersLength} {chaptersLength === 1 ? "Chapter" : "Chapters"}
+              </span>
             </div>
           </div>
-          {
-            progress !== null ? (
-                <div className="flex items-center gap-x-2 text-sm md:text-xs">
-                    {/* TODO: Progress Component */}
-                </div>
-            ) : (
-                <p className="text-md md:text-sm font-medium text-slate-700">
-                    {formatPrice(price)}
-                </p>
-            )
-          }
+          {progress !== null ? (
+            <CourseProgress value={progress} variant="success" size="sm" />
+          ) : (
+            <p className="text-md md:text-sm font-medium text-slate-700">
+              {formatPrice(price)}
+            </p>
+          )}
         </div>
       </div>
     </Link>
