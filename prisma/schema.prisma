@@ -116,7 +116,7 @@ model Purchase {
 
 model Teacher {
   id       String  @id @default(uuid())
-  userId   String  @unique
+  userId   String
   email    String?
   fullName String?
   approved Boolean @default(false)

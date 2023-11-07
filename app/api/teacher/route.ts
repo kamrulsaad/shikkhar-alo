@@ -1,27 +1,27 @@
 import { db } from "@/lib/db";
-import { isTeacher } from "@/lib/teacher";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
     const { userId } = auth();
-    const { title } = await req.json();
+    const { fullName, email } = await req.json();
 
-    if (!userId || !isTeacher(userId)) {
+    if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const course = await db.course.create({
+    const teacher = await db.teacher.create({
       data: {
-        title,
+        fullName,
         userId,
+        email,
       },
     });
 
-    return NextResponse.json(course);
+    return NextResponse.json(teacher);
   } catch (error) {
-    console.log("[COURSES] Error: ", error);
+    console.log("[TEACHER] Error: ", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }

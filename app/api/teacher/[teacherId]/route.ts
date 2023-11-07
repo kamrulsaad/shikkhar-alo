@@ -1,27 +1,29 @@
 import { db } from "@/lib/db";
-import { isTeacher } from "@/lib/teacher";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+export async function PATCH(
+  req: Request,
+  { params }: { params: { teacherId: string } }
+) {
   try {
     const { userId } = auth();
-    const { title } = await req.json();
+    const { teacherId } = params;
 
-    if (!userId || !isTeacher(userId)) {
+    if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const course = await db.course.create({
+    const course = await db.teacher.update({
+      where: { id: teacherId },
       data: {
-        title,
-        userId,
+        approved: true,
       },
     });
 
     return NextResponse.json(course);
   } catch (error) {
-    console.log("[COURSES] Error: ", error);
+    console.log("[TEACHER APPROVE] ", error);
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }
