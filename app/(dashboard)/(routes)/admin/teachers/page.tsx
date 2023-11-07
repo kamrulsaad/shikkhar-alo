@@ -1,4 +1,3 @@
-import React from "react";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";

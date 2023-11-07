@@ -5,9 +5,10 @@ import toast from "react-hot-toast";
 
 interface TeacherApplyButtonProps {
   data: TeacherApplyInfo;
+  disabled?: boolean;
 }
 
-const TeacherApplyButton = ({ data }: TeacherApplyButtonProps) => {
+const TeacherApplyButton = ({ data, disabled }: TeacherApplyButtonProps) => {
   const handleApply = () => {
     toast.promise(axios.post("/api/teacher", data), {
       loading: "Application in progress...",
@@ -17,7 +18,7 @@ const TeacherApplyButton = ({ data }: TeacherApplyButtonProps) => {
   };
 
   return (
-    <Button onClick={handleApply} size="sm" variant="ghost">
+    <Button disabled={disabled} onClick={handleApply} size="sm" variant="ghost">
       Become a Teacher
     </Button>
   );
