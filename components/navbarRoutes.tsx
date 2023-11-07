@@ -37,7 +37,11 @@ const NavbarRoutes = () => {
               Teacher mode
             </Button>
           </Link>
-        ) : null}
+        ) : (
+          <Button size="sm" variant="ghost">
+            Be A Teacher
+          </Button>
+        )}
         <UserButton afterSignOutUrl="/" />
       </div>
     </>

@@ -114,6 +114,17 @@ model Purchase {
   @@index([courseId])
 }
 
+model Teacher {
+  id       String  @id @default(uuid())
+  userId   String  @unique
+  email    String?
+  fullName String?
+  approved Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model StripeCustomer {
   id               String  @id @default(uuid())
   userId           String  @unique
