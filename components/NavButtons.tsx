@@ -2,7 +2,6 @@
 
 import TeacherApplyButton from "./TeacherApplyButton";
 import { TeacherApplyInfo } from "@/interfaces/teacher";
-import getTeacher from "@/actions/getTeacher";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -15,26 +14,36 @@ interface ButtonComponentProps {
 const ButtonComponent = ({ data }: ButtonComponentProps) => {
   const { userId } = useAuth();
 
-  const [isTeacherApproved, setIsTeacherApproved] = useState(false);
-  const [isTeacherPending, setIsTeacherPending] = useState(false);
+  const [isApproved, setIsApproved] = useState<boolean>(false);
+  const [isPending, setIsPending] = useState<boolean>(false);
 
   useEffect(() => {
-    const getTeacherData = async () => {
-      const teacher = await getTeacher(userId as string);
-      setIsTeacherApproved(teacher.approved);
-      setIsTeacherPending(teacher.pending);
-    };
-    getTeacherData();
-  }, [isTeacherApproved, userId]);
+    const getTeacher = async () => {
+      const res = await fetch(`/api/teacher/${userId}`);
+      const teacher = await res.json();
 
-  return isTeacherApproved ? (
+      if (teacher?.id) {
+        if (teacher.approved) {
+          setIsApproved(true);
+          setIsPending(false);
+        } else {
+          setIsApproved(false);
+          setIsPending(true);
+        }
+      }
+    };
+
+    getTeacher();
+  }, [userId]);
+
+  return isApproved ? (
     <Link href="/teacher/course">
       <Button size="sm" variant="ghost">
         Teacher mode
       </Button>
     </Link>
   ) : (
-    <TeacherApplyButton disabled={isTeacherPending} data={data} />
+    <TeacherApplyButton disabled={isPending} data={data} />
   );
 };
 

@@ -1,20 +1,21 @@
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
-import axios from "axios";
 
 interface TeacherStatus {
   approved: boolean;
   pending: boolean;
 }
 
-const getTeacher = async (userId : string): Promise<TeacherStatus> => {
+const getTeacher = async (id?: string): Promise<TeacherStatus> => {
   try {
+    const { userId: ClerkId } = auth();
 
-    if (!userId) {
-      return {
-        approved: false,
-        pending: false,
-      };
+    let userId: string;
+
+    if (!id) {
+      userId = ClerkId as string;
+    } else {
+      userId = id;
     }
 
     const teacher = await db.teacher.findFirst({

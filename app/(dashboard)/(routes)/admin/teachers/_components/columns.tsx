@@ -77,7 +77,6 @@ export const columns: ColumnDef<Teacher>[] = [
           success: "Teacher Approved Successfully",
           error: "Something went wrong",
         });
-        window.location.reload();
       };
 
       return (
