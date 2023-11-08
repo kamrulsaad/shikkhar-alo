@@ -11,7 +11,7 @@ interface TeacherApplyButtonProps {
 const TeacherApplyButton = ({ data, disabled }: TeacherApplyButtonProps) => {
   const handleApply = () => {
     toast.promise(axios.post("/api/teacher", data), {
-      loading: "Application in progress...",
+      loading: "Application going on",
       success: "Your Application is pending approval",
       error: "Something went wrong",
     });
