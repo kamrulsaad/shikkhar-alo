@@ -1,34 +1,89 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Shikkhar Alo - A modern Learning Management System
 
-## Getting Started
+![Website HomePage](./public/Shikkhar%20Alo.png)
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+A modern full-stack web application based on `Nextjs 13.5.5` and `TypeScript` with `Clerk` authentication and `Stripe` payment processing.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Table of Contents
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Overview](#overview)
+- [Links](#links)
+- [Screenshot](#preview)
+- [Features](#features)
+- [Future Improvements](#future-improvements)
+- [Built with](#built-with)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+---
 
-## Learn More
+## Links
 
-To learn more about Next.js, take a look at the following resources:
+- Live Site Link: [Click Here](https://shikkhar-alo.vercel.app/) to see the Live website.
+- Github Repo: [Click Here](https://github.com/kamrulsaad/shikkhar-alo) to check the github repo for this project.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Demo Credentials
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Admin:
+  - Username: `admin@shikkhar-alo.com`
+  - Password: `SAadmin123`
 
-## Deploy on Vercel
+## Preview
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Home Page](./public/image.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+## Features
+
+Users should be able to:
+
+- Login / Register using Clerk
+- View all courses
+- View a single course
+- Enjoy free contents of a course
+- Purchase a course using Stripe
+- View their own profile and course progress
+- Apply for becoming an instructor
+
+Instructors should be able to:
+
+- Create/Manage their own courses
+- Create/Manage their own chapters
+- Upload/Manage their own videos
+- Choose a thumbnail for their videos
+- Upload course attachments
+- Manage their own profile
+- See analytics of their course purchases
+
+Admins should be able to:
+
+- Approve/Reject instructor applications
+- Manage all courses
+
+## Built With
+
+- [React](https://reactjs.org/) - JS library
+- [Next.js 13.4.12](https://nextjs.org/) - React framework
+- [TypeScript](https://www.typescriptlang.org/) - JS Superset
+- [TailwindCSS](https://tailwindcss.com/) - CSS framework
+- [Clerk](https://clerk.dev/) - Authentication
+- [Stripe](https://stripe.com/) - Payment Processing
+- [Prisma](https://www.prisma.io/) - Database ORM
+- [Zod](https://zod.dev/) - Data Validation
+- [React Hook Form](https://react-hook-form.com/) - Forms
+- [UploadThing](https://uploadthing.com/) - File Uploads
+- [Mux](https://mux.com/) - Video Streaming
+- [React Table](https://react-table.tanstack.com/) - Tables
+- [React Confetti](https://www.npmjs.com/package/react-confetti) - Confetti
+- [React Quill](https://www.npmjs.com/package/react-quill) - Rich Text Editor
+- [React Icons](https://react-icons.github.io/react-icons/) - Icons
+- [React Hot Toast](https://react-hot-toast.com/) - Toasts
+- [Radix UI](https://www.radix-ui.com/) - UI Components
+- [Lucide](https://lucide.dev/) - Icons
+- [Eslint](https://eslint.org/) - Linter
+- [Prettier](https://prettier.io/) - Code Formatter
+- [Recharts](https://recharts.org/en-US/) - Charts
+- [Axios](https://axios-http.com/) - HTTP Client
+
+
